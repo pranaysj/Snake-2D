@@ -8,6 +8,18 @@ public class SnakeMovement : MonoBehaviour
     private Vector2 snakeDirection = Vector2.zero;
     private float snakeSpeed = 2.0f;
 
+    public float SnakeSpeed
+    {
+        get { return snakeSpeed; }
+        set { snakeSpeed = value; }
+    }
+
+    public Vector2 SnakeDirection
+    {
+        get { return snakeDirection; }
+        set { snakeDirection = value; }
+    }
+
     private void Start()
     {
         SpriteRenderer snakeSprite = gameObject.AddComponent<SpriteRenderer>();
@@ -18,24 +30,23 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && snakeDirection != Vector2.down)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && SnakeDirection != Vector2.down)
         {
-            snakeDirection = Vector2.up;
+            SnakeDirection = Vector2.up;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && snakeDirection != Vector2.up)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && SnakeDirection != Vector2.up)
         {
-            snakeDirection = Vector2.down;
+            SnakeDirection = Vector2.down;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && snakeDirection != Vector2.left)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && SnakeDirection != Vector2.left)
         {
-            snakeDirection = Vector2.right;
+            SnakeDirection = Vector2.right;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && snakeDirection != Vector2.right)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && SnakeDirection != Vector2.right)
         {
-            snakeDirection = Vector2.left;
+            SnakeDirection = Vector2.left;
         }
-
-        transform.Translate(snakeDirection * snakeSpeed * Time.deltaTime);
+        transform.Translate(SnakeDirection * SnakeSpeed * Time.deltaTime);
 
     }
 
