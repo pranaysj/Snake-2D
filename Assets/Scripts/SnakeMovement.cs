@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class SnakeMovement : MonoBehaviour
 {
-    private Vector2 snakeDirection = Vector2.zero;
+    private Vector3 snakeDirection = Vector3.zero;
     private float snakeSpeed = 2.0f;
 
     public float SnakeSpeed
@@ -14,7 +14,7 @@ public class SnakeMovement : MonoBehaviour
         set { snakeSpeed = value; }
     }
 
-    public Vector2 SnakeDirection
+    public Vector3 SnakeDirection
     {
         get { return snakeDirection; }
         set { snakeDirection = value; }
@@ -30,21 +30,21 @@ public class SnakeMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && SnakeDirection != Vector2.down)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && SnakeDirection != Vector3.down)
         {
-            SnakeDirection = Vector2.up;
+            SnakeDirection = Vector3.up;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && SnakeDirection != Vector2.up)
+        else if (Input.GetKeyDown(KeyCode.DownArrow) && SnakeDirection != Vector3.up)
         {
-            SnakeDirection = Vector2.down;
+            SnakeDirection = Vector3.down;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && SnakeDirection != Vector2.left)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && SnakeDirection != Vector3.left)
         {
-            SnakeDirection = Vector2.right;
+            SnakeDirection = Vector3.right;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && SnakeDirection != Vector2.right)
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && SnakeDirection != Vector3.right)
         {
-            SnakeDirection = Vector2.left;
+            SnakeDirection = Vector3.left;
         }
         transform.Translate(SnakeDirection * SnakeSpeed * Time.deltaTime);
 
