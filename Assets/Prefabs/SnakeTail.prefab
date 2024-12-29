@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2237199171157455024}
   - component: {fileID: 8609429821582974359}
-  - component: {fileID: -2338834967335286470}
   m_Layer: 0
   m_Name: SnakeTail
   m_TagString: Untagged
@@ -85,15 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2338834967335286470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2264492999075787071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d7c8cfe714b6141ab2a30a44d799dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
