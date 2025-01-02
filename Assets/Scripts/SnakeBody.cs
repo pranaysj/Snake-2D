@@ -29,7 +29,9 @@ public class SnakeBody : MonoBehaviour
 
         for (int i = BodyParts.Count - 1; i > 0; i--)
         {
-            pos = new Vector3(BodyParts[i].transform.position.x, BodyParts[i].transform.position.y, 0);break;
+            Debug.Log("Spawn        :       " + i);   // checkinh the spawn number number of loops run
+            pos = new Vector3(BodyParts[i].transform.position.x, BodyParts[i].transform.position.y, 0);
+            break;
         }
 
         GameObject bodyPart = Instantiate(GameAssets.Instance.snakeBodyPrefab, pos, Quaternion.identity);
