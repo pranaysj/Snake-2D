@@ -59,6 +59,7 @@ public class SnakeMovement : MonoBehaviour
 
     public Vector3 SnakeHeadDirection(HeadDircetion direction)
     {
+<<<<<<< Updated upstream
         switch (direction)
         {
             case HeadDircetion.UP:
@@ -75,6 +76,10 @@ public class SnakeMovement : MonoBehaviour
                 return Vector3.right;
             default: return Vector3.down;
         }
+=======
+        transform.Translate(SnakeDirection * SnakeSpeed * Time.deltaTime); 
+        
+>>>>>>> Stashed changes
     }
 
 }

@@ -10,7 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2237199171157455024}
   - component: {fileID: 8609429821582974359}
+<<<<<<< Updated upstream
   - component: {fileID: -5497147712668340453}
+=======
+  - component: {fileID: -2338834967335286470}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: SnakeTail
   m_TagString: Untagged
@@ -94,6 +98,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2264492999075787071}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: c54272638dd875046924ca7b1423b382, type: 3}
+=======
+  m_Script: {fileID: 11500000, guid: d7d7c8cfe714b6141ab2a30a44d799dc, type: 3}
+>>>>>>> Stashed changes
   m_Name: 
   m_EditorClassIdentifier: 
