@@ -46,8 +46,13 @@ public class SnakeMovement : MonoBehaviour
         {
             SnakeDirection = Vector2.left;
         }
-        transform.Translate(SnakeDirection * SnakeSpeed * Time.deltaTime);
 
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Translate(SnakeDirection * SnakeSpeed * Time.deltaTime);
+        
     }
 
 }

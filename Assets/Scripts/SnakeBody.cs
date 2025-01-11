@@ -25,14 +25,13 @@ public class SnakeBody : MonoBehaviour
     }
     private void SpawnBodyPart()
     {
-        Vector3 pos = this.transform.position;
+        Vector3 pos = BodyParts[BodyParts.Count - 1].transform.position;
 
-        for (int i = BodyParts.Count - 1; i > 0; i--)
-        {
-            pos = new Vector3(BodyParts[i].transform.position.x, BodyParts[i].transform.position.y, 0);break;
-        }
 
-        GameObject bodyPart = Instantiate(GameAssets.Instance.snakeBodyPrefab, pos, Quaternion.identity);
+        var direction = snakeMovement.SnakeDirection;
+        var spawnPosiotn = pos - (Vector3)direction * 0.3f;
+
+        GameObject bodyPart = Instantiate(GameAssets.Instance.snakeBodyPrefab, spawnPosiotn, Quaternion.identity);
         bodyParts.Add(bodyPart);
     }
 }
