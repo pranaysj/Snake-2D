@@ -10,7 +10,6 @@ public class SnakeMovement : MonoBehaviour
         UP, DOWN, LEFT, RIGHT
     };
 
-    public HeadDircetion headDirection;
     private Vector3 snakeDirection;
     private float snakeSpeed = 2.0f;
 
@@ -32,7 +31,6 @@ public class SnakeMovement : MonoBehaviour
         snakeSprite.sprite = GameAssets.Instance.snake;
         snakeSprite.color = Color.green;
 
-        headDirection = HeadDircetion.RIGHT;
     }
 
     private void Update()
@@ -55,6 +53,7 @@ public class SnakeMovement : MonoBehaviour
         }
 
         transform.Translate(SnakeDirection * SnakeSpeed * Time.deltaTime);
+
     }
 
     public Vector3 SnakeHeadDirection(HeadDircetion direction)
@@ -62,18 +61,10 @@ public class SnakeMovement : MonoBehaviour
 <<<<<<< Updated upstream
         switch (direction)
         {
-            case HeadDircetion.UP:
-                headDirection = HeadDircetion.UP;
-                return Vector3.up;
-            case HeadDircetion.DOWN:
-                headDirection = HeadDircetion.DOWN;
-                return Vector3.down;
-            case HeadDircetion.LEFT:
-                headDirection = HeadDircetion.LEFT;
-                return Vector3.left;
-            case HeadDircetion.RIGHT:
-                headDirection = HeadDircetion.RIGHT;
-                return Vector3.right;
+            case HeadDircetion.UP: return Vector3.up;
+            case HeadDircetion.DOWN: return Vector3.down;
+            case HeadDircetion.LEFT: return Vector3.left;
+            case HeadDircetion.RIGHT: return Vector3.right;
             default: return Vector3.down;
         }
 =======

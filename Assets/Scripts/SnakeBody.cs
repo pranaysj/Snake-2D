@@ -30,9 +30,7 @@ public class SnakeBody : MonoBehaviour
 <<<<<<< Updated upstream
         for (int i = BodyParts.Count - 1; i > 0; i--)
         {
-            Debug.Log("Spawn        :       " + i);   // checkinh the spawn number number of loops run
-            pos = new Vector3(BodyParts[i].transform.position.x, BodyParts[i].transform.position.y, 0);
-            break;
+            pos = new Vector3(BodyParts[i].transform.position.x, BodyParts[i].transform.position.y, 0);break;
         }
 =======
         //for (int i = BodyParts.Count - 1; i > 0; i--)
