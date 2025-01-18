@@ -23,10 +23,10 @@ public class FoodSpawn : MonoBehaviour
         screenBound = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.0f));
         screenMinimum = mainCamera.ScreenToWorldPoint(new Vector2(0.0f, 0.0f));
 
-        StartCoroutine(SpawnApple());
+        StartCoroutine(SpawnFood());
     }
 
-    private IEnumerator SpawnApple()
+    private IEnumerator SpawnFood()
     {
         while (!snakecollision.snakeIsDeath)
         {
@@ -36,9 +36,9 @@ public class FoodSpawn : MonoBehaviour
 
             if (randomPositioin != snakeHead.transform.position)
             {
-                GameObject appleClone = Instantiate(SelectAppleType(), randomPositioin, Quaternion.identity);
+                GameObject foodClone = Instantiate(SelectFoodType(), randomPositioin, Quaternion.identity);
 
-                spawnList.Add(appleClone);
+                spawnList.Add(foodClone);
 
                 yield return new WaitForSeconds(destoryInterval);
 
@@ -54,26 +54,26 @@ public class FoodSpawn : MonoBehaviour
         }
     }
 
-    private GameObject SelectAppleType()
+    private GameObject SelectFoodType()
     {
         powerCount++;
-        GameObject appleType;
+        GameObject foodType;
 
         switch (powerCount)
         {
             case 4: case 8: case 12: case 16:
-                appleType = GameAssets.Instance.apple[1];
+                foodType = GameAssets.Instance.food[1];
                 break;
             case 6: case 10: case 18: case 22:
-                appleType= GameAssets.Instance.apple[2]; 
+                foodType = GameAssets.Instance.food[2]; 
                 break;
             default:
-                appleType = GameAssets.Instance.apple[0]; 
+                foodType = GameAssets.Instance.food[0]; 
                 break;
         }
 
         if(powerCount > 25) powerCount = 0;
 
-        return appleType;
+        return foodType;
     }
 }

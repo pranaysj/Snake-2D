@@ -8,6 +8,9 @@ TagManager:
   - Apple
   - FruitBasket
   - BitterGourd
+  - ScoreBoost
+  - Shield
+  - SpeedUp
   layers:
   - Default
   - TransparentFX

@@ -18,5 +18,6 @@ public class GameAssets : MonoBehaviour
 
     public Sprite snake;
     public GameObject snakeBodyPrefab;
-    public GameObject[] apple;
+    public GameObject[] food;
+    public GameObject[] powerUp;
 }
