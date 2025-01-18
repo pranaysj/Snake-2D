@@ -19,19 +19,28 @@ public class SnakeBody : MonoBehaviour
         BodyParts.Add(this.gameObject);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space)) SpawnBodyPart();
-    }
-    private void SpawnBodyPart()
+    public void SpawnBodyPart()
     {
         Vector3 pos = BodyParts[BodyParts.Count - 1].transform.position;
-
 
         var direction = snakeMovement.SnakeDirection;
         var spawnPosiotn = pos - (Vector3)direction * 0.3f;
 
         GameObject bodyPart = Instantiate(GameAssets.Instance.snakeBodyPrefab, spawnPosiotn, Quaternion.identity);
         bodyParts.Add(bodyPart);
+
+        //Remoev collider from 1st segment
+        bodyParts[1].GetComponent<BoxCollider2D>().enabled = false;
+    }
+
+    public void RemoveBodyPart()
+    {
+        GameObject segment = BodyParts[BodyParts.Count - 1];
+
+        if (BodyParts.Count > 3)
+        {
+            Destroy(segment);
+            BodyParts.Remove(segment);
+        }
     }
 }
