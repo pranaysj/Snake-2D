@@ -7,7 +7,7 @@ public class FoodSpawn : MonoBehaviour
     private Vector3 screenBound;
     private Vector2 screenMinimum;
     private float offset = 0.5f;
-    [SerializeField] private List<GameObject> foodSpawnList = new List<GameObject>();
+    public List<GameObject> foodSpawnList = new List<GameObject>();
     private float spawnInterval = 2.0f;
     private float destoryInterval = 5.0f;
     private GameObject snakeHead;

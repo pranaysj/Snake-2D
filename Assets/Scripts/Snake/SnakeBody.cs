@@ -22,7 +22,10 @@ public class SnakeBody : MonoBehaviour
         snakeMovement = GetComponent<SnakeMovement>();
         BodyParts.Add(this.gameObject);
     }
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space)) SpawnBodyPart();
+    }
     public void SpawnBodyPart()
     {
         Vector3 pos = BodyParts[BodyParts.Count - 1].transform.position;

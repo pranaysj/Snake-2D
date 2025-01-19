@@ -8,7 +8,7 @@ public class PowerUp : MonoBehaviour
     private Vector2 screenMinimum;
     private float offset = 0.5f;
 
-    [SerializeField] private List<GameObject> powerUpSpawnList = new List<GameObject>();
+    public List<GameObject> powerUpSpawnList = new List<GameObject>();
     private float spawnInterval = 8.0f;
     private float destoryInterval = 2.5f;
     private int powerCount = 0;
@@ -65,10 +65,10 @@ public class PowerUp : MonoBehaviour
         switch (powerCount)
         {
             case 0:
-                powerType = GameAssets.Instance.powerUp[2];
+                powerType = GameAssets.Instance.powerUp[0];
                 break;
             case 1:
-                powerType = GameAssets.Instance.powerUp[2];
+                powerType = GameAssets.Instance.powerUp[1];
                 break;
             default:
                 powerType = GameAssets.Instance.powerUp[2];

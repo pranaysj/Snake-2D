@@ -7,7 +7,6 @@ public class SnakeWrap : MonoBehaviour
     private Vector3 screenBound;
     private Vector2 screenMinimum;
 
-    private SnakeMovement snake;
 
     private SnakeBody snakeBody;
 
@@ -23,8 +22,6 @@ public class SnakeWrap : MonoBehaviour
         screenBound = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.0f));
         screenMinimum = mainCamera.ScreenToWorldPoint(new Vector2(0.0f, 0.0f));
 
-
-        snake = GetComponent<SnakeMovement>();
         snakeBody = GetComponent<SnakeBody>();
 
     }
