@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class SnakeMovement : MonoBehaviour
 {
     private Vector2 snakeDirection = Vector2.zero;
-    private float snakeSpeed = 2.0f;
+    [SerializeField] private float snakeSpeed = 2.0f;
 
     public float SnakeSpeed
     {
@@ -18,14 +18,6 @@ public class SnakeMovement : MonoBehaviour
     {
         get { return snakeDirection; }
         set { snakeDirection = value; }
-    }
-
-    private void Start()
-    {
-        SpriteRenderer snakeSprite = gameObject.AddComponent<SpriteRenderer>();
-        snakeSprite.sprite = GameAssets.Instance.snake;
-        snakeSprite.color = Color.green;
-
     }
 
     private void Update()

@@ -22,4 +22,20 @@ public class ScoreText : MonoBehaviour
         scoretxt.text =  " Score : " + score.ToString();
         
     }
+
+    public void Score(int point, bool booster)
+    {
+
+        if (booster)
+        {
+            score += point * 2;
+        }
+        else
+        {
+            score += point;
+        }
+
+        scoretxt.text = " Score : " + score.ToString();
+
+    }
 }

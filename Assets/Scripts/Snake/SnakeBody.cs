@@ -15,6 +15,10 @@ public class SnakeBody : MonoBehaviour
 
     void Start()
     {
+        SpriteRenderer snakeSprite = gameObject.AddComponent<SpriteRenderer>();
+        snakeSprite.sprite = GameAssets.Instance.snake;
+        snakeSprite.color = Color.green;
+
         snakeMovement = GetComponent<SnakeMovement>();
         BodyParts.Add(this.gameObject);
     }

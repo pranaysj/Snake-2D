@@ -6,29 +6,29 @@ using UnityEngine;
 public class SnakeCollision : MonoBehaviour
 {
     private SnakeBody body;
+    private SnakeMovement snakeMov;
     private ScoreText scoreText;
     public bool snakeIsDeath = false;
+    [SerializeField]public bool scoreBosster = false;
 
     private void Start()
     {
         body = GetComponent<SnakeBody>();
+        snakeMov = GetComponent<SnakeMovement>();
         scoreText = GameObject.Find("Score").GetComponent<ScoreText>();
-    }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "SnakeTail")
-        {
-            Debug.Log("DEATH");
-            snakeIsDeath = true;
-        }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "SnakeTail")
+        {
+            snakeMov.enabled = false; //Disable the Movement Script when sckae death.
+            snakeIsDeath = true;
+        }
+
         if (collision.gameObject.tag == "Apple")
         {
-            scoreText.Score(1);
+            scoreText.Score(2, scoreBosster);
             Destroy(collision.gameObject);
             body.SpawnBodyPart();
 
@@ -36,7 +36,7 @@ public class SnakeCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "FruitBasket")
         {
-            scoreText.Score(2);
+            scoreText.Score(3, scoreBosster);
             Destroy(collision.gameObject);
             StartCoroutine(SpawnSegment());
         }
@@ -45,8 +45,25 @@ public class SnakeCollision : MonoBehaviour
         {
             scoreText.Score(-2);
             Destroy(collision.gameObject);
-            //minus the last body segment
             StartCoroutine(RemoveSegment());
+        }
+
+        if (collision.gameObject.tag == "ScoreBoost")
+        {
+            Destroy(collision.gameObject);
+            StartCoroutine(ScoreBooster());
+        }
+
+        if (collision.gameObject.tag == "Shield")
+        {
+            Destroy(collision.gameObject);
+            StartCoroutine(Shield());
+        }
+
+        if (collision.gameObject.tag == "SpeedUp")
+        {
+            Destroy(collision.gameObject);
+            StartCoroutine(SnakeSpeedUp());
         }
     }
 
@@ -62,6 +79,44 @@ public class SnakeCollision : MonoBehaviour
         body.RemoveBodyPart();
         yield return new WaitForSeconds(0.2f);
         body.RemoveBodyPart();
+    }
+
+    private IEnumerator ScoreBooster()
+    {
+        scoreBosster = true;
+        yield return new WaitForSeconds(3.0f);
+        scoreBosster = false;
+    }
+
+    private IEnumerator Shield()
+    {
+        InvokeRepeating("Shiel", 0.1f, 0.2f);
+
+        yield return new WaitForSeconds(3.0f);
+
+        CancelInvoke("Shiel");
+
+        for (int i = 0; i < body.BodyParts.Count; i++)
+        {
+            if (i == 2) body.BodyParts[i].transform.gameObject.tag = "SafeTail";
+
+            body.BodyParts[i].transform.gameObject.tag = "SnakeTail";
+        }
+    }
+
+    private void Shiel()
+    {
+        for (int i = 0; i < body.BodyParts.Count; i++)
+        {
+            body.BodyParts[i].transform.gameObject.tag = "SafeTail";
+        }
+    }
+
+    private IEnumerator SnakeSpeedUp()
+    {
+        snakeMov.SnakeSpeed = 4.0f;
+        yield return new WaitForSeconds(3.0f);
+        snakeMov.SnakeSpeed = 2.0f;
     }
 
 }

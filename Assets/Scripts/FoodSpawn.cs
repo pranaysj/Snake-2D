@@ -7,7 +7,7 @@ public class FoodSpawn : MonoBehaviour
     private Vector3 screenBound;
     private Vector2 screenMinimum;
     private float offset = 0.5f;
-    [SerializeField] private List<GameObject> spawnList = new List<GameObject>();
+    [SerializeField] private List<GameObject> foodSpawnList = new List<GameObject>();
     private float spawnInterval = 2.0f;
     private float destoryInterval = 5.0f;
     private GameObject snakeHead;
@@ -38,16 +38,16 @@ public class FoodSpawn : MonoBehaviour
             {
                 GameObject foodClone = Instantiate(SelectFoodType(), randomPositioin, Quaternion.identity);
 
-                spawnList.Add(foodClone);
+                foodSpawnList.Add(foodClone);
 
                 yield return new WaitForSeconds(destoryInterval);
 
-                if (spawnList != null)
+                if (foodSpawnList != null)
                 {
-                    for (int i = 0; i < spawnList.Count; i++)
+                    for (int i = 0; i < foodSpawnList.Count; i++)
                     {
-                        Destroy(spawnList[i]);
-                        spawnList.Remove(spawnList[i]);
+                        Destroy(foodSpawnList[i]);
+                        foodSpawnList.Remove(foodSpawnList[i]);
                     }
                 }   
             }
