@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class SnakeMovement : MonoBehaviour
+public class S_SnakeMovement : MonoBehaviour
 {
     private Vector2 snakeDirection = Vector2.zero;
     [SerializeField] private float snakeSpeed = 2.0f;
@@ -22,24 +22,24 @@ public class SnakeMovement : MonoBehaviour
 
     private void Start()
     {
-        SnakeDirection = Vector2.right;
+        SnakeDirection = Vector2.left;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && SnakeDirection != Vector2.down)
+        if (Input.GetKeyDown(KeyCode.W) && SnakeDirection != Vector2.down)
         {
             SnakeDirection = Vector2.up;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && SnakeDirection != Vector2.up)
+        else if (Input.GetKeyDown(KeyCode.S) && SnakeDirection != Vector2.up)
         {
             SnakeDirection = Vector2.down;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && SnakeDirection != Vector2.left)
+        else if (Input.GetKeyDown(KeyCode.D) && SnakeDirection != Vector2.left)
         {
             SnakeDirection = Vector2.right;
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) && SnakeDirection != Vector2.right)
+        else if (Input.GetKeyDown(KeyCode.A) && SnakeDirection != Vector2.right)
         {
             SnakeDirection = Vector2.left;
         }

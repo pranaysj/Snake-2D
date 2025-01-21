@@ -6,12 +6,12 @@ using TMPro;
 
 public class ScoreText : MonoBehaviour
 {
-    private int score;
-    private TextMeshProUGUI scoretxt;
+    public int score;
+    public TextMeshProUGUI scoretxt;
 
     private void Start()
     {
-        scoretxt = gameObject.GetComponent<TextMeshProUGUI>();
+        scoretxt = transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     public void Score(int point)

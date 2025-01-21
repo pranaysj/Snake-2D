@@ -5,41 +5,58 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-public class SnakeCollision : MonoBehaviour
+public class S_SnakeCollision : MonoBehaviour
 {
-    private SnakeBody body;
-    private SnakeMovement snakeMov;
-    private ScoreText scoreText;
+    private S_SnakeBody body;
+    private S_SnakeMovement snakeMov;
+    private S_ScoreText scoreText;
     public bool snakeIsDeath = false;
     public bool snakeCollide = false;
+    public bool snakeHeadCollide = false;
     [SerializeField]public bool scoreBosster = false;
 
 
     private void Start()
     {
-        body = GetComponent<SnakeBody>();
-        snakeMov = GetComponent<SnakeMovement>();
-        scoreText = GameObject.Find("Canvas").GetComponent<ScoreText>();
+        body = GetComponent<S_SnakeBody>();
+        snakeMov = GetComponent<S_SnakeMovement>();
+        scoreText = GameObject.Find("Canvas").GetComponent<S_ScoreText>();
 
     }
+
    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "FirstSnakeHead")
+        {
+            snakeMov.enabled = false; //Disable the Movement Script when sckae death.
+            GameObject gameObject = GameObject.Find("Snake");
+            SnakeMovement firstSnake = gameObject.GetComponent<SnakeMovement>();
+            firstSnake.enabled = false; // Disable the Movement Script when sckae death
+            snakeHeadCollide = true;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "SnakeTail")
+        if (collision.gameObject.tag == "SecondSnakeTail")
         {
             snakeMov.enabled = false; //Disable the Movement Script when sckae death.
             snakeIsDeath = true;
         }
 
-        if (collision.gameObject.tag == "SecondSnakeTail")
+        if (collision.gameObject.tag == "SnakeTail")
         {
             snakeMov.enabled = false;
-            GameObject gameObject = GameObject.Find("SecondSnake");
-            S_SnakeMovement secondSnake = gameObject.GetComponent<S_SnakeMovement>();
-            secondSnake.enabled = false; // Disable the Movement Script when sckae death
+            GameObject gameObject = GameObject.Find("Snake");
+            SnakeMovement firstSnake = gameObject.GetComponent<SnakeMovement>();
+            firstSnake.enabled = false; // Disable the Movement Script when sckae death
             snakeCollide = true;
 
         }
+
+
 
         if (collision.gameObject.tag == "Apple")
         {
@@ -113,11 +130,10 @@ public class SnakeCollision : MonoBehaviour
 
         for (int i = 0; i < body.BodyParts.Count; i++)
         {
-            body.BodyParts[i].transform.gameObject.tag = "SnakeTail";
+            body.BodyParts[i].transform.gameObject.tag = "SecondSnakeTail";
 
-            if (i == 0) body.BodyParts[i].transform.gameObject.tag = "FirstSnakeHead";
+            if (i == 0) body.BodyParts[i].transform.gameObject.tag = "SecondSnakeHead";
             if (i == 1) body.BodyParts[i].transform.gameObject.tag = "SafeTail";
-
         }
     }
 

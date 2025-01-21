@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameAssets : MonoBehaviour
 {
@@ -17,7 +19,15 @@ public class GameAssets : MonoBehaviour
     }
 
     public Sprite snake;
+    public Sprite secondSnake;
+
     public GameObject snakeBodyPrefab;
+    public GameObject secondSnakeBodyPrefab;
+
     public GameObject[] food;
     public GameObject[] powerUp;
+
+    public Sprite GreenWin;
+    public Sprite YellowWin;
+    public Sprite Draw;
 }

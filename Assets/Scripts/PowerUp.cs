@@ -10,7 +10,7 @@ public class PowerUp : MonoBehaviour
 
     public List<GameObject> powerUpSpawnList = new List<GameObject>();
     private float spawnInterval = 8.0f;
-    private float destoryInterval = 2.5f;
+    private float destoryInterval = 5.0f;
 
     private GameObject snakeHead;
     SnakeCollision snakecollision;
@@ -67,10 +67,10 @@ public class PowerUp : MonoBehaviour
                 powerType = GameAssets.Instance.powerUp[0];
                 break;
             case 1:
-                powerType = GameAssets.Instance.powerUp[1];
+                powerType = GameAssets.Instance.powerUp[0];
                 break;
             default:
-                powerType = GameAssets.Instance.powerUp[2];
+                powerType = GameAssets.Instance.powerUp[0];
                 break;
         }
 

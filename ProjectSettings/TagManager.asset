@@ -13,6 +13,9 @@ TagManager:
   - SpeedUp
   - SafeTail
   - ScoreText
+  - SecondSnakeTail
+  - FirstSnakeHead
+  - SecondSnakeHead
   layers:
   - Default
   - TransparentFX

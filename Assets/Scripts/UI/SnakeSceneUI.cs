@@ -13,13 +13,18 @@ public class SnakeSceneUI : MonoBehaviour
     public Button resumeButton;
     public Button restartButton;
 
+    public Image gameOverImage;
     public Button gameOverRestartButton;
 
     public GameObject transitionPanel;
 
     private SnakeCollision snakeCollision;
+    private S_SnakeCollision secondSnakeCollision;
 
-    private bool isGameOverPanelactive = true;
+    private bool isGameOverPanelActive = true;
+
+    private ScoreText scoreText;
+    private S_ScoreText scoreText2;
 
     private void Awake()
     {
@@ -41,10 +46,17 @@ public class SnakeSceneUI : MonoBehaviour
         
         menuBackgroundPanelOfGameOverPanel = transform.GetChild(3).gameObject;
 
+        gameOverImage = transform.GetChild(3).GetChild(0).GetChild(0).gameObject.GetComponent<Image>();
+
         gameOverRestartButton = transform.GetChild(3).GetChild(0).GetChild(1).gameObject.GetComponent<Button>();
         gameOverRestartButton.onClick.AddListener(Restart);
 
         snakeCollision = GameObject.Find("Snake").GetComponent<SnakeCollision>();
+        GameObject secondSnake = GameObject.Find("SecondSnake");
+        if (secondSnake != null) secondSnakeCollision = secondSnake.GetComponent<S_SnakeCollision>();
+
+        scoreText = GetComponent<ScoreText>();
+        scoreText2 = GetComponent<S_ScoreText>();
 
     }
 
@@ -82,16 +94,80 @@ public class SnakeSceneUI : MonoBehaviour
 
     private void Update()
     {
-        if (snakeCollision.snakeIsDeath && isGameOverPanelactive)
+        //FOR 1st Snake- SELF COLLISION
+        if (snakeCollision.snakeIsDeath && isGameOverPanelActive)
         {
-            isGameOverPanelactive = false;
-            //activate the Game over panel
-            StartCoroutine(GameOverPanel(0.5f));
+            isGameOverPanelActive = false;
+            StartCoroutine(GameOverPanel(1.5f));
+            if (SceneManager.GetActiveScene().name == "Two Snakes")
+            {
+                gameOverImage.sprite = GameAssets.Instance.YellowWin;
+            }
+        }
+
+        //FOR 2nd Snake - SELF COLLISION
+        if (secondSnakeCollision != null)
+        {
+            if (secondSnakeCollision.snakeIsDeath && isGameOverPanelActive)
+            {
+                isGameOverPanelActive = false;
+                StartCoroutine(GameOverPanel(1.5f));
+                gameOverImage.sprite = GameAssets.Instance.GreenWin;
+            }
+        }
+
+        
+
+        if (SceneManager.GetActiveScene().name == "Two Snakes")
+        {
+            //1st snake collide with 2nd snake body
+            if (snakeCollision.snakeCollide && isGameOverPanelActive)
+            {
+                isGameOverPanelActive = false;
+                StartCoroutine(GameOverPanel(1.5f));
+                gameOverImage.sprite = GameAssets.Instance.YellowWin;
+            }
+
+            //2nd snake collide with 1st snake body
+            if (secondSnakeCollision.snakeCollide && isGameOverPanelActive)
+            {
+                isGameOverPanelActive = false;
+                StartCoroutine(GameOverPanel(1.5f));
+                gameOverImage.sprite = GameAssets.Instance.GreenWin;
+            }
+
+            //When both snake head collide
+            if (secondSnakeCollision.snakeHeadCollide && isGameOverPanelActive)
+            {
+                isGameOverPanelActive = false;
+                StartCoroutine(ScoreCompare(1.5f));
+            }
         }
     }
 
     private IEnumerator GameOverPanel(float delay)
     {
+        yield return new WaitForSeconds(delay);
+        menuBackgroundPanelOfGameOverPanel.SetActive(true);
+    }
+
+    private IEnumerator ScoreCompare(float delay)
+    {
+        if (scoreText.score > scoreText2.score)
+        {
+             gameOverImage.sprite = GameAssets.Instance.GreenWin;
+        }
+
+        if (scoreText.score < scoreText2.score)
+        {
+            gameOverImage.sprite = GameAssets.Instance.YellowWin;
+        }
+
+        if (scoreText.score == scoreText2.score)
+        {
+            gameOverImage.sprite= GameAssets.Instance.Draw;
+        }
+
         yield return new WaitForSeconds(delay);
         menuBackgroundPanelOfGameOverPanel.SetActive(true);
     }

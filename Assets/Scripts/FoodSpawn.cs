@@ -12,7 +12,7 @@ public class FoodSpawn : MonoBehaviour
     private float destoryInterval = 5.0f;
     private GameObject snakeHead;
     SnakeCollision snakecollision;
-    private int powerCount = 0;
+    private int foodCount = 0;
 
     void Start()
     {
@@ -56,10 +56,10 @@ public class FoodSpawn : MonoBehaviour
 
     private GameObject SelectFoodType()
     {
-        powerCount++;
+        foodCount++;
         GameObject foodType;
 
-        switch (powerCount)
+        switch (foodCount)
         {
             case 4: case 8: case 12: case 16:
                 foodType = GameAssets.Instance.food[1];
@@ -72,7 +72,7 @@ public class FoodSpawn : MonoBehaviour
                 break;
         }
 
-        if(powerCount > 25) powerCount = 0;
+        if(foodCount > 25) foodCount = 0;
 
         return foodType;
     }
