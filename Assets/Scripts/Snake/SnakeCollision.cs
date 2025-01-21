@@ -1,5 +1,7 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,13 +13,15 @@ public class SnakeCollision : MonoBehaviour
     public bool snakeIsDeath = false;
     [SerializeField]public bool scoreBosster = false;
 
+
     private void Start()
     {
         body = GetComponent<SnakeBody>();
         snakeMov = GetComponent<SnakeMovement>();
         scoreText = GameObject.Find("Score").GetComponent<ScoreText>();
-    }
 
+    }
+   
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "SnakeTail")

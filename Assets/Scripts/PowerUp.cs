@@ -11,7 +11,6 @@ public class PowerUp : MonoBehaviour
     public List<GameObject> powerUpSpawnList = new List<GameObject>();
     private float spawnInterval = 8.0f;
     private float destoryInterval = 2.5f;
-    private int powerCount = 0;
 
     private GameObject snakeHead;
     SnakeCollision snakecollision;

@@ -12,6 +12,7 @@ TagManager:
   - Shield
   - SpeedUp
   - SafeTail
+  - ScoreText
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,11 @@ public class SnakeMovement : MonoBehaviour
         set { snakeDirection = value; }
     }
 
+    private void Start()
+    {
+        //SnakeDirection = Vector2.right;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) && SnakeDirection != Vector2.down)
