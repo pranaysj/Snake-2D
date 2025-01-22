@@ -43,6 +43,7 @@ public class SnakeCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "Apple")
         {
+            SoundManager.Instance.ItemCollectSound(Sounds.ItemCollect);
             scoreText.Score(2, scoreBosster);
             Destroy(collision.gameObject);
             body.SpawnBodyPart();
@@ -51,6 +52,7 @@ public class SnakeCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "FruitBasket")
         {
+            SoundManager.Instance.ItemCollectSound(Sounds.ItemCollect);
             scoreText.Score(3, scoreBosster);
             Destroy(collision.gameObject);
             StartCoroutine(SpawnSegment());
@@ -58,6 +60,7 @@ public class SnakeCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "BitterGourd")
         {
+            SoundManager.Instance.ItemCollectSound(Sounds.ItemCollect);
             scoreText.Score(-2);
             Destroy(collision.gameObject);
             StartCoroutine(RemoveSegment());
@@ -65,18 +68,21 @@ public class SnakeCollision : MonoBehaviour
 
         if (collision.gameObject.tag == "ScoreBoost")
         {
+            SoundManager.Instance.ItemCollectSound(Sounds.PowerUpCollect);
             Destroy(collision.gameObject);
             StartCoroutine(ScoreBooster());
         }
 
         if (collision.gameObject.tag == "Shield")
         {
+            SoundManager.Instance.ItemCollectSound(Sounds.PowerUpCollect);
             Destroy(collision.gameObject);
             StartCoroutine(Shield());
         }
 
         if (collision.gameObject.tag == "SpeedUp")
         {
+            SoundManager.Instance.ItemCollectSound(Sounds.PowerUpCollect);
             Destroy(collision.gameObject);
             StartCoroutine(SnakeSpeedUp());
         }

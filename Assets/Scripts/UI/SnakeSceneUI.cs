@@ -33,6 +33,9 @@ public class SnakeSceneUI : MonoBehaviour
     }
     void Start()
     {
+        SoundManager.Instance.SnakeRattleMusic(Sounds.SnakeRattle);
+
+
         pauseButton = transform.GetChild(1).gameObject.GetComponent<Button>();
         pauseButton.onClick.AddListener(MenuPanel);
 
@@ -67,18 +70,28 @@ public class SnakeSceneUI : MonoBehaviour
 
     private void MenuPanel()
     {
+        SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
+        SoundManager.Instance.snakeRattleMusic.Pause();
+
         menuBackgroundPanelOfPausePanel.SetActive(true);
         Time.timeScale = 0.0f;
     }
 
     private void Resume()
     {
+        SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
+        SoundManager.Instance.snakeRattleMusic.Play();
+
         menuBackgroundPanelOfPausePanel.SetActive(false);
         Time.timeScale = 1.0f;
     }
 
     private void Restart()
     {
+        SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
+        SoundManager.Instance.backgroundMusic.Play();
+        SoundManager.Instance.gameOverMusic.Pause();
+
         Time.timeScale = 1.0f;
         transitionPanel.SetActive(true);
         StartCoroutine(TransitionPanel(1.5f));
@@ -116,7 +129,7 @@ public class SnakeSceneUI : MonoBehaviour
             }
         }
 
-        
+
 
         if (SceneManager.GetActiveScene().name == "Two Snakes")
         {
@@ -126,6 +139,7 @@ public class SnakeSceneUI : MonoBehaviour
                 isGameOverPanelActive = false;
                 StartCoroutine(GameOverPanel(1.5f));
                 gameOverImage.sprite = GameAssets.Instance.YellowWin;
+
             }
 
             //2nd snake collide with 1st snake body
@@ -134,6 +148,7 @@ public class SnakeSceneUI : MonoBehaviour
                 isGameOverPanelActive = false;
                 StartCoroutine(GameOverPanel(1.5f));
                 gameOverImage.sprite = GameAssets.Instance.GreenWin;
+
             }
 
             //When both snake head collide
@@ -141,6 +156,7 @@ public class SnakeSceneUI : MonoBehaviour
             {
                 isGameOverPanelActive = false;
                 StartCoroutine(ScoreCompare(1.5f));
+
             }
         }
     }
@@ -149,6 +165,7 @@ public class SnakeSceneUI : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         menuBackgroundPanelOfGameOverPanel.SetActive(true);
+        GameOverMusic();
     }
 
     private IEnumerator ScoreCompare(float delay)
@@ -170,5 +187,13 @@ public class SnakeSceneUI : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
         menuBackgroundPanelOfGameOverPanel.SetActive(true);
+        GameOverMusic();
+    }
+
+    private void GameOverMusic()
+    {
+        SoundManager.Instance.GameOverMusic(Sounds.GameOver);
+        SoundManager.Instance.backgroundMusic.Pause();
+        SoundManager.Instance.snakeRattleMusic.Pause();
     }
 }

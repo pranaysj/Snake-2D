@@ -27,6 +27,7 @@ public class Lobby : MonoBehaviour
     {
         //Fade Out animation
         titlePanelAnimator.SetTrigger("Play");
+        SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
         //Delay to activate the gameObject
         StartCoroutine(ActivateGameObject(playModePanelGameObject, 1.0f));
     }
@@ -40,13 +41,17 @@ public class Lobby : MonoBehaviour
     private void OnePlayer()
     {
         playModePanelAnimator.SetTrigger("FadeOut");
+        SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
+
         StartCoroutine(SceneLoader("Snake", 1.0f));
     }
 
     private void TwoPlayer()
     {
         playModePanelAnimator.SetTrigger("FadeOut");
-        StartCoroutine(SceneLoader("Snake", 1.0f));
+        SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
+
+        StartCoroutine(SceneLoader("Two Snakes", 1.0f));
 
     }
 
