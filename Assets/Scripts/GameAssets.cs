@@ -20,6 +20,10 @@ public class GameAssets : MonoBehaviour
 
     public Sprite snake;
     public Sprite secondSnake;
+    
+    //For MVC
+    public GameObject snake1Prefab;
+    public GameObject second2Prefab;
 
     public GameObject snakeBodyPrefab;
     public GameObject secondSnakeBodyPrefab;

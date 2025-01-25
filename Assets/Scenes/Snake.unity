@@ -367,6 +367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snake: {fileID: 21300000, guid: 83c8545fce1e663489d415aa62b1ed06, type: 3}
   secondSnake: {fileID: 0}
+  snake1Prefab: {fileID: 2264492999075787071, guid: edb8f1434b84316478ba26d62a6e2c2d, type: 3}
+  second2Prefab: {fileID: 6765298394063015310, guid: a7d8b3cc43855db4ea199855f6662da3, type: 3}
   snakeBodyPrefab: {fileID: 2264492999075787071, guid: edb8f1434b84316478ba26d62a6e2c2d, type: 3}
   secondSnakeBodyPrefab: {fileID: 0}
   food:
@@ -377,6 +379,9 @@ MonoBehaviour:
   - {fileID: 2268745149636023946, guid: 36e2bf185974eaa46b7d62549a664453, type: 3}
   - {fileID: 4034886502038256976, guid: eadfe6aee14eb564ab58dd5e3db017c9, type: 3}
   - {fileID: 8547493245614309472, guid: 8e13965b5b26bf0499edbd9fa003e171, type: 3}
+  GreenWin: {fileID: 0}
+  YellowWin: {fileID: 0}
+  Draw: {fileID: 0}
 --- !u!4 &1015250833
 Transform:
   m_ObjectHideFlags: 0
@@ -432,6 +437,50 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.01, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1352634812
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1352634814}
+  - component: {fileID: 1352634813}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1352634813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352634812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d73af6f98097914bb4b01ca02e89e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1352634814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352634812}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0810745, y: 0.8404483, z: 133.26501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1642,6 +1691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resumeButton: {fileID: 0}
   restartButton: {fileID: 0}
+  gameOverImage: {fileID: 0}
   gameOverRestartButton: {fileID: 0}
   transitionPanel: {fileID: 0}
 --- !u!114 &2099160089
@@ -1656,6 +1706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a18c722fe38f34887b45a0aba0552f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   scoretxt: {fileID: 0}
 --- !u!1 &2107206796
 GameObject:
@@ -1790,6 +1841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snakeIsDeath: 0
+  snakeCollide: 0
   scoreBosster: 0
 --- !u!50 &2107206803
 Rigidbody2D:
@@ -1829,3 +1881,4 @@ SceneRoots:
   - {fileID: 1115201174}
   - {fileID: 2099160086}
   - {fileID: 1791858388}
+  - {fileID: 1352634814}
