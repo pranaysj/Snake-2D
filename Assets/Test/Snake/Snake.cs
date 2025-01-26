@@ -1,32 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Snake : SnakeManager
 {
-    public GameObject seg;
+    public GameObject segmentPrefab;
     public Vector3 offset = Vector3.zero;
+
+    Vector3 currentPosition;
+    Vector3 wrappedPosition;
 
     private void Start()
     {
+        //Initial direction left/right
         move.Dircetion();
+        //Get the screen boundary fro wrapping
         screenWrap.ScreenBoundary();
+
+        handleInput.GetInput();
     }
 
     private void Update()
     {
-        transform.position = screenWrap.Wrapping(transform.position);
+        currentPosition = transform.position;
+        wrappedPosition = screenWrap.Wrapping(currentPosition);
 
+        transform.position = wrappedPosition;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             offset = transform.position - move.SnakeDirection * 0.3f;
 
-            segment.Grow(Instantiate(seg, offset, Quaternion.identity));
+            segment.Grow(Instantiate(segmentPrefab, offset, Quaternion.identity));
         }
 
+        //Assign input buttons
+        move.SnakeDirection = handleInput.InputButton(move.SnakeDirection);
     }
 
     private void FixedUpdate()
@@ -35,8 +42,7 @@ public class Snake : SnakeManager
 
         if (segment.segments != null)
         {
-            Vector3 currentPos = transform.position;
-            segment.Follow(currentPos, move.SnakeSpeed);
+            segment.Follow(currentPosition, move.SnakeSpeed);
         }
     }
 }

@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement
 {
+
+   
 
     [SerializeField] private float snakeSpeed = 2.0f;
 
 
     public static bool lastDirection = false;
     private Vector3 snakeDirection = Vector3.right;
+
+
 
     public Vector3 SnakeDirection
     {
@@ -32,4 +34,7 @@ public class Movement
     {
         return SnakeDirection * SnakeSpeed * Time.deltaTime;
     }
+
+   
+   
 }

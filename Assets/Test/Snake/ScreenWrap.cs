@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class ScreenWrap 
 {
@@ -56,13 +53,4 @@ public class ScreenWrap
         return position;
     }
 
-    //private void Start()
-    //{
-    //    ScreenBoundary();
-    //}
-
-    //public void Update()
-    //{
-    //    transform.position = Wrapping(transform.position);
-    //}
 }

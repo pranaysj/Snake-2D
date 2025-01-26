@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -11,8 +9,10 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         snake1 = Instantiate(snake1, new Vector3 (-3,0,0), Quaternion.identity);
+        
+
+        snake2 = Instantiate(snake2, new Vector3 (3,0,0), Quaternion.identity);
+
     }
 
-
-    //Instantiate the snake object with Input Type
 }

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snake1: {fileID: 8144166314626980724, guid: fff86ef8a6493f24a925922e09e354cb, type: 3}
-  snake2: {fileID: 0}
+  snake2: {fileID: 6765298394063015310, guid: ce4ac0dd90b84df478e858eeddcc3707, type: 3}
 --- !u!4 &1013658661
 Transform:
   m_ObjectHideFlags: 0
