@@ -16,6 +16,7 @@ TagManager:
   - SecondSnakeTail
   - FirstSnakeHead
   - SecondSnakeHead
+  - PlayerManager
   layers:
   - Default
   - TransparentFX

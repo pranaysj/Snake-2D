@@ -13,9 +13,9 @@ public class ObjectBelowUIText : MonoBehaviour
     [SerializeField] private float scoreTextWidth;
     [SerializeField] private float pauseButtonWidth;
 
-    private SnakeBody snakeBody;
+    //private SnakeBody snakeBody;
     private FoodSpawn foodList;
-    private PowerUp powerList;
+    private PowerUpSpawn powerList;
 
     public TextMeshProUGUI scoretext;
     public Image pauseButtonImage;
@@ -31,9 +31,9 @@ public class ObjectBelowUIText : MonoBehaviour
 
         //scoretext = GetComponent<TextMeshProUGUI>();
         //pauseButtonImage = GetComponent<Image>();
-        snakeBody = GameObject.Find("Snake").GetComponent<SnakeBody>();  
+        //snakeBody = GameObject.Find("Snake").GetComponent<SnakeBody>();  
         foodList = GameObject.Find("Food").GetComponent<FoodSpawn>();   
-        powerList = GameObject.Find("PowerUp").GetComponent<PowerUp>();
+        powerList = GameObject.Find("PowerUp").GetComponent<PowerUpSpawn>();
 
         upHeight = screenBound.y - 1.0f;
 
@@ -50,26 +50,26 @@ public class ObjectBelowUIText : MonoBehaviour
     void Update()
     {
 
-        for (int i = snakeBody.BodyParts.Count-1; i > 0; i--)
-        {
-            if (snakeBody.BodyParts[i].transform.position.y > upHeight
-                /*&& snakeBody.BodyParts[i].transform.position.x < scoreTextWidth*/)
-            {
-                scoreTextColor.a = 0.1f;
-                pauseButtonColor.a = 0.1f;
-                Debug.Log("YES");
-            }
-            else
-            {
-                scoreTextColor.a = 1.0f;
-                pauseButtonColor.a = 1.0f;
-            }
+        //for (int i = snakeBody.BodyParts.Count-1; i > 0; i--)
+        //{
+        //    if (snakeBody.BodyParts[i].transform.position.y > upHeight
+        //        /*&& snakeBody.BodyParts[i].transform.position.x < scoreTextWidth*/)
+        //    {
+        //        scoreTextColor.a = 0.1f;
+        //        pauseButtonColor.a = 0.1f;
+        //        Debug.Log("YES");
+        //    }
+        //    else
+        //    {
+        //        scoreTextColor.a = 1.0f;
+        //        pauseButtonColor.a = 1.0f;
+        //    }
 
-            scoretext.color = scoreTextColor;
-            pauseButtonImage.color = pauseButtonColor;
+        //    scoretext.color = scoreTextColor;
+        //    pauseButtonImage.color = pauseButtonColor;
             
             
-        }
+        //}
 
 
         for (int i = 0; i < foodList.foodSpawnList.Count; i++)

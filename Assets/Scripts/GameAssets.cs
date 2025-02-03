@@ -27,7 +27,11 @@ public class GameAssets : MonoBehaviour
     public GameObject[] food;
     public GameObject[] powerUp;
 
+    [Header("Images")]
+    public Sprite GameOver;
     public Sprite GreenWin;
     public Sprite YellowWin;
     public Sprite Draw;
+
+    //public FoodItemSO apple;
 }

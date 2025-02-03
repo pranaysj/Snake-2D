@@ -16,6 +16,8 @@ public class Lobby : MonoBehaviour
     public Button twoPlayerButton;
     public Animator playModePanelAnimator;
 
+    public static bool isSecondSnakeSpawn;
+
     private void Awake()
     {
         playButton.onClick.AddListener(Play);
@@ -43,6 +45,8 @@ public class Lobby : MonoBehaviour
         playModePanelAnimator.SetTrigger("FadeOut");
         SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
 
+        isSecondSnakeSpawn = false;
+
         StartCoroutine(SceneLoader("Snake", 1.0f));
     }
 
@@ -51,7 +55,9 @@ public class Lobby : MonoBehaviour
         playModePanelAnimator.SetTrigger("FadeOut");
         SoundManager.Instance.ButtonClickSound(Sounds.ButtonClick);
 
-        StartCoroutine(SceneLoader("Two Snakes", 1.0f));
+        isSecondSnakeSpawn = true;
+
+        StartCoroutine(SceneLoader("Snake", 1.0f));
 
     }
 
