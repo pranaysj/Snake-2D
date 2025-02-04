@@ -14,24 +14,32 @@ public class Snake : SnakeBase
     {
         //Initial direction left/right
         move.Dircetion();
+
         //Get the screen boundary fro wrapping
         screenWrap.ScreenBoundary();
 
+        //Set the Input button for snake
         handleInput.GetInput();
+
+
+        segment.segments.Add(this.gameObject);
+
+        SpawnSegment();
     }
 
     private void Update()
     {
+        //get the head postion 
         currentPosition = transform.position;
-        wrappedPosition = screenWrap.Wrapping(currentPosition);
 
+        //warp the head when get through the boarder
+        wrappedPosition = screenWrap.Wrapping(currentPosition);
         transform.position = wrappedPosition;
 
+        //Spawn segment when press space button
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            offset = transform.position - move.SnakeDirection * 0.3f;
-
-            segment.Grow(Instantiate(segmentPrefab, offset, Quaternion.identity));
+            SpawnSegment();
         }
 
         //Assign input buttons
@@ -40,11 +48,23 @@ public class Snake : SnakeBase
 
     private void FixedUpdate()
     {
+        //Head movement
+        //transform.position += move.MoveForward();
         transform.Translate(move.MoveForward());
 
-        if (segment.segments != null)
+        //Segment follow the head
+        segment.Follow(move.SnakeSpeed, move.SnakeDirection);
+
+        //Draw red line between segments
+        for (int i = 1; i < segment.segments.Count; i++)
         {
-            //segment.Follow(currentPosition, move.SnakeSpeed);
+            Debug.DrawLine(segment.segments[i - 1].transform.position, segment.segments[i].transform.position, Color.red);
         }
+    }
+
+    public void SpawnSegment()
+    {
+        Vector3 pos = segment.segments[segment.segments.Count - 1].transform.position - move.SnakeDirection * 0.3f;
+        segment.Grow(Instantiate(segmentPrefab, pos, Quaternion.identity));
     }
 }

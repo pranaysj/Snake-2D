@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
+    public Snake snake;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,7 +17,7 @@ public class Collision : MonoBehaviour
 
             Destroy(collision.gameObject);
 
-
+            snake.SpawnSegment();
 
         }
 
