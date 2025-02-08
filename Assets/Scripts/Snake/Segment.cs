@@ -2,29 +2,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Segment
+public class Segment : MonoBehaviour, IPositionProvider
 {
-    public List<GameObject> segments = new List<GameObject>();
-    private Movement move;
+    GameObject frontSegment;
+    Vector3 currentPosition;
 
-    public void Grow(GameObject seg)
+    IPositionProvider positionProvider;
+    private Vector3 currentVelocity = Vector3.zero;
+    
+
+    private void Start()
     {
-        segments.Add(seg);
+        currentPosition = transform.position;
+        //Debug.Log("1st Enable : " + Time.time);
+        Debug.Log(gameObject.name + " : " + currentPosition);
     }
 
-    public void Follow(float speed, Vector3 direction)
+    private void FixedUpdate()
     {
-        Debug.Log("HEAD : "+ segments[0].transform.position);
-        Debug.Log("Tail : " + segments[1].transform.position);
+       
+        Vector3 frontSegPosition = positionProvider.GetContinuousPosition();
+        Debug.Log(gameObject.name + " ***************** : " + currentPosition);
+        Vector3 direction = (frontSegPosition - currentPosition).normalized;
 
-        //segments[1].transform.position = segments[0].transform.position - dircetion * 0.3f;
+        Vector3 desiredPosition = frontSegPosition - direction * 0.2f;
 
-        for (int i = 0; i < segments.Count; i++)
-        {
-            if (i+1 > segments.Count) break;
-            segments[i + 1].transform.position = segments[i].transform.position - direction * 0.3f;
+        currentPosition = Vector3.SmoothDamp(currentPosition, desiredPosition, ref currentVelocity, 0.05f, 3.0f);
 
-        }
+        //transform.position = currentPosition;
+        transform.position = ScreenWrap.Wrapping(currentPosition);
 
     }
+
+    public Vector3 GetContinuousPosition()
+    {
+        return currentPosition;
+    }
+
+    public void InitializeSegement(GameObject newfrontSegment)
+    {   
+
+        frontSegment = newfrontSegment;
+        positionProvider = frontSegment.GetComponent<IPositionProvider>();
+        //
+        //currentPosition = positionProvider?.GetContinuousPosition() ?? transform.position;
+
+        Vector3 difference = (frontSegment.transform.position - transform.position).normalized;
+        transform.position = frontSegment.transform.position - difference * 0.3f;
+    }
+
 }

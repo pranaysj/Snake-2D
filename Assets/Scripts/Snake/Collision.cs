@@ -17,7 +17,7 @@ public class Collision : MonoBehaviour
 
             Destroy(collision.gameObject);
 
-            snake.SpawnSegment();
+            //SPAWN SNAKE
 
         }
 

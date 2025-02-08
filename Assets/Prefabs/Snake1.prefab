@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 2001348097748486803}
   - component: {fileID: 5562401568238485800}
   - component: {fileID: 5672828088091071233}
+  - component: {fileID: 9015960596375418053}
   - component: {fileID: -9132298225621686445}
   - component: {fileID: 8313051550744875047}
+  - component: {fileID: -5107268440428207153}
   m_Layer: 0
   m_Name: Snake1
   m_TagString: FirstSnakeHead
@@ -173,8 +175,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c419e5fc1ba0e45b63efa9656986f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentPrefab: {fileID: 8924255788723514762, guid: 5424d787724b5824f99a8dfd3aff9135, type: 3}
   offset: {x: 0, y: 0, z: 0}
+--- !u!114 &9015960596375418053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983194645605305153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29e397acbfd80b479a2c2a21fcc3ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  body: []
+  segmentPrefab: {fileID: 8924255788723514762, guid: 5424d787724b5824f99a8dfd3aff9135, type: 3}
 --- !u!114 &-9132298225621686445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,5 +213,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47b3d8dfdd7ed9d4e967aade68aa4958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5107268440428207153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983194645605305153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d7c8cfe714b6141ab2a30a44d799dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1092895646480775262}
   - component: {fileID: -397839502706978058}
   - component: {fileID: -8282661408723298807}
+  - component: {fileID: -8332747738641500030}
+  - component: {fileID: -2629615936756554006}
   m_Layer: 0
   m_Name: Segment1
   m_TagString: SnakeTail
@@ -141,5 +143,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f229d10282bb13b4399eab518ce222e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8332747738641500030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924255788723514762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf98132625dfef4badc44ba1c1deb4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2629615936756554006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924255788723514762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d7c8cfe714b6141ab2a30a44d799dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

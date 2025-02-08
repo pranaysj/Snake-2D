@@ -1,31 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class Follow : MonoBehaviour
 {
-    //private SnakeBody snakeBody;
-    //private SnakeMovement snakeMovement;
-    //private GameObject previoustail;
-    //private float desiredDistance = 0.3f; // Adjust as needed
-
+    //[SerializeField] private int positionHistorySize = 50;
+    //private readonly List<Vector3> positionHistory = new();
+    //private Vector3 previousPosition;
 
     //private void Start()
     //{
-    //    GameObject snake = GameObject.Find("Snake");
-    //    snakeBody = snake.GetComponent<SnakeBody>();
-    //    snakeMovement = snake.GetComponent<SnakeMovement>();
-
-    //    int count = snakeBody.BodyParts.Count;
-    //    previoustail = snakeBody.BodyParts[count - 2];
+    //    previousPosition = transform.position;
+    //    positionHistory.Add(transform.position);
     //}
 
-    //void Update()
-    //{
+    private void FixedUpdate()
+    {
+        // Wrap the current position using the shared utility.
+        Vector3 currentPosition = ScreenWrap.Wrapping(transform.position);
+        transform.position = currentPosition;
 
-    //    Vector3 directionToPrevious = (previoustail.transform.position - transform.position).normalized;
-    //    transform.position = previoustail.transform.position - directionToPrevious * desiredDistance;
-
-    //}
+        //// Update history if the position has changed.
+        //if (transform.position != previousPosition)
+        //{
+        //    positionHistory.Add(transform.position);
+        //    if (positionHistory.Count > positionHistorySize)
+        //        positionHistory.RemoveAt(0);
+        //    previousPosition = transform.position;
+        //}
+    }
 }

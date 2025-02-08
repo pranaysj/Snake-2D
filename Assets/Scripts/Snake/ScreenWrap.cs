@@ -1,56 +1,72 @@
 using UnityEngine;
 
-public class ScreenWrap 
+public static class ScreenWrap 
 {
 
-    private Vector3 screenBound;
-    private Vector3 screenMinimum;
+    private static Vector3 screenBound;
+    private static Vector3 screenMinimum;
 
-    public Vector3 ScreenBound
+    public static Vector3 ScreenBound
     {
         get { return screenBound; }
         set { screenBound = value; }
     }
 
-    public Vector3 ScreenMinimum
+    public static Vector3 ScreenMinimum
     {
         get { return screenMinimum; }
         set { screenMinimum = value; }
     }
 
-    public void ScreenBoundary()
+    public static void ScreenBoundary()
     {
         Camera mainCamera = Camera.main;
 
         ScreenBound = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.0f));
         ScreenMinimum = mainCamera.ScreenToWorldPoint(new Vector2(0.0f, 0.0f));
 
+
     }
 
-    public Vector3 Wrapping(Vector3 position)
+    public static Vector3 Wrapping(Vector3 position)
     {
-        //up and down
-        if (position.y > screenBound.y)
-        {
-            position.y = -screenBound.y;
+        ////up and down
+        //if (position.y > ScreenBound.y)
+        //{
+        //    position.y = -ScreenBound.y;
 
-        }
-        else if (position.y < -screenBound.y)
-        {
-            position.y = screenBound.y;
-        }
+        //}
+        //else if (position.y < -ScreenBound.y)
+        //{
+        //    position.y = ScreenBound.y;
+        //}
 
-        //Left and  Right Wrap
-        if (position.x > screenBound.x)
-        {
-            position.x = -screenBound.x;
-        }
-        else if (position.x < -screenBound.x)
-        {
-            position.x = screenBound.x;
-        }
+        ////Left and  Right Wrap
+        //if (position.x > ScreenBound.x)
+        //{
+        //    position.x = -ScreenBound.x;
+        //}
+        //else if (position.x < -ScreenBound.x)
+        //{
+        //    position.x = ScreenBound.x;
+        //}
 
-        return position;
+        //return position;
+
+        return new Vector3(WrapAxis(position.x, ScreenBound.x), WrapAxis(position.y, ScreenBound.y), position.z);
+
+    }
+
+    private static float WrapAxis(float value, float bound)
+    {
+        float min = -bound;
+        float max = bound;
+        float range = max - min;
+        if (value > max)
+            return min + (value - max) % range;
+        if (value < min)
+            return max - (min - value) % range;
+        return value;
     }
 
 }

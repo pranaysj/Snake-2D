@@ -14,6 +14,5 @@ public class SegmentCollision : MonoBehaviour
             
         }
 
-        //Othersnkae
     }
 }
