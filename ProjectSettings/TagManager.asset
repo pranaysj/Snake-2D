@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SnakeTail
+  - Apple
+  - FruitBasket
+  - BitterGourd
+  - ScoreBoost
+  - Shield
+  - SpeedUp
+  - SafeTail
+  - ScoreText
+  - SecondSnakeTail
+  - FirstSnakeHead
+  - SecondSnakeHead
+  - PlayerManager
   layers:
   - Default
   - TransparentFX

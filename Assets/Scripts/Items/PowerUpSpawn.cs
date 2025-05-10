@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PowerUpSpawn : MonoBehaviour
+{
+    private Vector3 screenBound;
+    private Vector2 screenMinimum;
+    private float offset = 0.5f;
+
+    public List<GameObject> powerUpSpawnList = new List<GameObject>();
+    private float spawnInterval = 8.0f;
+    private float destoryInterval = 5.0f;
+
+    public GameManager playerManager;
+    //private SnakeCollision snake1collision;
+    //private SnakeCollision snake2collision;
+
+    void Start()
+    {
+        //snake1collision = playerManager.snake1.GetComponent<SnakeCollision>();
+        //snake2collision = playerManager.snake2.GetComponent<SnakeCollision>();
+
+        Camera mainCamera = Camera.main;
+        screenBound = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0.0f));
+        screenMinimum = mainCamera.ScreenToWorldPoint(new Vector2(0.0f, 0.0f));
+
+        StartCoroutine(SpawnpowerUp());
+    }
+
+    private IEnumerator SpawnpowerUp()
+    {
+        while (/*!snake1collision.snakeIsDeath*/ true)
+        {
+            float randomSpawnInterval = Random.Range(1.0f, spawnInterval);
+            yield return new WaitForSeconds(randomSpawnInterval);
+
+            Vector3 randomPositioin = new Vector3(Random.Range(screenMinimum.x + offset, screenBound.x - offset), Random.Range(screenMinimum.y + offset, screenBound.y - offset), 0.0f);
+
+            if (randomPositioin != playerManager.snake1.transform.position || randomPositioin != playerManager.snake2.transform.position)
+            {
+                GameObject powerUpClone = Instantiate(SelectPowerType(Random.Range(0, 3)), randomPositioin, Quaternion.identity);
+
+                powerUpSpawnList.Add(powerUpClone);
+
+                yield return new WaitForSeconds(destoryInterval);
+
+                if (powerUpSpawnList != null)
+                {
+                    for (int i = 0; i < powerUpSpawnList.Count; i++)
+                    {
+                        Destroy(powerUpSpawnList[i]);
+                        powerUpSpawnList.Remove(powerUpSpawnList[i]);
+                    }
+                }
+            }
+        }
+    }
+
+    private GameObject SelectPowerType(int powerCount)
+    {
+        GameObject powerType;
+
+        switch (powerCount)
+        {
+            case 0:
+                powerType = GameAssets.Instance.powerUp[2];
+                break;
+            case 1:
+                powerType = GameAssets.Instance.powerUp[1];
+                break;                                  
+            default:                                    
+                powerType = GameAssets.Instance.powerUp[0];
+                break;
+        }
+
+        return powerType;
+    }
+}
